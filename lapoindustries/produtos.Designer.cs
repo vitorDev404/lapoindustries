@@ -329,7 +329,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(761, 553);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.textBox9);
@@ -359,6 +359,7 @@
             this.Controls.Add(this.button1);
             this.Name = "produtos";
             this.Text = "produtos";
+            this.Load += new System.EventHandler(this.produtos_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

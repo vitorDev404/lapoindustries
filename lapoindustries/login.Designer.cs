@@ -135,7 +135,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.pbMostrarSenha);
             this.Controls.Add(this.txtSenha);
@@ -148,6 +148,7 @@
             this.Controls.Add(this.label1);
             this.Name = "login";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbMostrarSenha)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

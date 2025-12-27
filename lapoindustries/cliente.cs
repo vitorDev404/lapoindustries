@@ -1,5 +1,7 @@
 ﻿using ClosedXML.Excel;
+using ClosedXML.Excel;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,11 +11,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ClosedXML.Excel;
 namespace lapoindustries
+//Importações
 {
     public partial class cliente : Form
     {
+        //Variáveis da Classe
         string stringdeconexao =
             "server = localhost;uid=root;pwd=123456;database=dados2025";
         MySql.Data.MySqlClient.MySqlConnection conn;
@@ -22,6 +25,7 @@ namespace lapoindustries
         {
             try
             {
+                //Construtor do Formulário
                 conn = new MySql.Data.MySqlClient.MySqlConnection();
                 conn.ConnectionString = stringdeconexao;
                 conn.Open();
@@ -46,12 +50,13 @@ namespace lapoindustries
 
         private void button5_Click(object sender, EventArgs e)
         {
+            //Botão "Limpar"
             textBox1.Text = "";
             textBox2.Text = "";
             textBox3.Text = "";
             textBox4.Text = "";
             textBox5.Text = "";
-            textBox5.Text = "";
+            textBox6.Text = "";
             textBox7.Text = "";
             textBox8.Text = "";
             textBox9.Text = "";
@@ -59,6 +64,7 @@ namespace lapoindustries
 
         private void button6_Click(object sender, EventArgs e)
         {
+            //Botões de Navegação
             menu me;
             me = new menu();
             me.Show();
@@ -67,6 +73,7 @@ namespace lapoindustries
 
         private void button7_Click(object sender, EventArgs e)
         {
+            //Botões de Navegação
             login log;
             log = new login();
             log.Show();
@@ -75,12 +82,14 @@ namespace lapoindustries
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            //CADASTRAR CLIENTE
             if (textBox1.Text == "" || textBox2.Text == "" || textBox4.Text == "" || textBox5.Text == "" || textBox6.Text == "" || textBox7.Text == "" || textBox8.Text == "" || textBox9.Text == "" || textBox3.Text == "")
             {
                 MessageBox.Show("Campo em branco");
             }
             else
             {
+                //Se tiver tudo preenchido → monta SQL
                 string strsql = "INSERT INTO cliente(cod_cli,nom_cli,cpf_cli,ida_cli,num_cli,rua_cli,bai_cli,est_cli,cid_cli) " +
                                               "VALUES (" +
                 int.Parse(textBox1.Text.Trim()) + "," +
@@ -94,6 +103,7 @@ namespace lapoindustries
                  "'" + textBox9.Text.Trim() + "');";
                 try
                 {
+                    //Executa o SQL
                     MySqlCommand cmd = new MySqlCommand(strsql, conn);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Cadastro realizado com sucesso.");
@@ -107,12 +117,14 @@ namespace lapoindustries
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //CONSULTAR CLIENTE
             if (textBox1.Text == "")
             {
                 MessageBox.Show("Campo em branco");
             }
             else
             {
+                //Busca no banco:
                 int codigo = int.Parse(textBox1.Text.Trim());
                 string strsql = "SELECT * FROM cliente WHERE cod_cli = " + codigo;
                 try
@@ -123,6 +135,7 @@ namespace lapoindustries
                     da.Fill(dt);
                     if (dt.Rows.Count > 0)
                     {
+                        //Se encontrou → preenche os campos:
                         textBox1.Text = Convert.ToString(dt.Rows[0][0]);
                         textBox2.Text = Convert.ToString(dt.Rows[0][1]);
                         textBox3.Text = Convert.ToString(dt.Rows[0][2]);
@@ -151,6 +164,7 @@ namespace lapoindustries
 
         private void button3_Click(object sender, EventArgs e)
         {
+            //ALTERAR CLIENTE 
             if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "" || textBox5.Text == "" || textBox6.Text == "" || textBox7.Text == "" || textBox8.Text == "" || textBox9.Text == "")
             {
                 MessageBox.Show("Campo em branco");
@@ -172,6 +186,7 @@ namespace lapoindustries
                     }
                     else
                     {
+                        //Se existir → monta o SQL UPDATE:
                         string strsql2 = "UPDATE cliente SET " +
                             "nom_cli = " + "'" + textBox2.Text.Trim() + "'" + "," +
                             "cpf_cli = " + long.Parse(textBox3.Text.Trim()) + "," +
@@ -182,10 +197,12 @@ namespace lapoindustries
                             "est_cli = " + "'" + textBox8.Text.Trim() + "'" + "," +
                             "cid_cli = " + "'" + textBox9.Text.Trim() + "'" +
                                           " WHERE cod_cli = " + codigo;
+                        //Pergunta ao usuário:
                         if (MessageBox.Show("Deseja Alterar", "Alterar", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
                             try
                             {
+                                //Executa alteração
                                 MySqlCommand cmd2 = new MySqlCommand(strsql2, conn);
                                 cmd2.ExecuteNonQuery();
                                 MessageBox.Show("Cliente modificado com sucesso");
@@ -206,6 +223,7 @@ namespace lapoindustries
 
         private void button4_Click(object sender, EventArgs e)
         {
+            //EXCLUIR CLIENTE
             if (textBox1.Text == "")
             {
                 MessageBox.Show("Campo em branco");
@@ -255,14 +273,14 @@ namespace lapoindustries
         {
             try
             {
-                
+                //GERAR RELATÓRIO EXCEL
                 string conexaoString = "server=localhost;user=root;password=123456;database=dados2025;";
                 string nomeTabela = "cliente";
-
+                //Abre conexão separada:
                 using (MySqlConnection conexao = new MySqlConnection(conexaoString))
                 {
                     conexao.Open();
-
+                    //Busca todos os dados da tabela cliente:
                     string query = $"SELECT * FROM cliente";
                     MySqlCommand cmd = new MySqlCommand(query, conexao);
 
@@ -276,13 +294,13 @@ namespace lapoindustries
                         return;
                     }
 
-                    
+                    //Cria um arquivo Excel com ClosedXML:
                     using (var workbook = new XLWorkbook())
                     {
                         var planilha = workbook.Worksheets.Add("Relatório");
-                        planilha.Cell(1, 1).InsertTable(dt); 
+                        planilha.Cell(1, 1).InsertTable(dt);
 
-                        
+                        //Salva no Desktop do usuário
                         string caminhoArquivo = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
                             + $"\\Relatorio_{nomeTabela}_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.xlsx";
 
@@ -291,7 +309,7 @@ namespace lapoindustries
                         MessageBox.Show($"Relatório gerado com sucesso!\n\n{caminhoArquivo}",
                             "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        
+                        //Abre o arquivo automaticamente:
                         System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
                         {
                             FileName = caminhoArquivo,

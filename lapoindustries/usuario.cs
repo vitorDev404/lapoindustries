@@ -307,6 +307,11 @@ namespace lapoindustries
         {
 
         }
+
+        private void usuario_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
                 

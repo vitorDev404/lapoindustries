@@ -306,6 +306,11 @@ namespace lapoindustries
         {
             
         }
+
+        private void produtos_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
             

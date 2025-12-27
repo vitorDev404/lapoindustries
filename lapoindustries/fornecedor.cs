@@ -301,6 +301,11 @@ namespace lapoindustries
                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void fornecedor_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
