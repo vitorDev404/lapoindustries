@@ -6,6 +6,7 @@ O **Lapo Industries** é um sistema desktop desenvolvido como **Trabalho de Conc
 
 O projeto demonstra, de forma prática, a utilização da tecnologia para **organização de dados**, **controle de informações** e **otimização de processos internos**, aproximando o ambiente acadêmico de um cenário corporativo real.
 
+---------------------------------------------------------------------------------------
 Objetivos
 
 Aplicar na prática os conhecimentos adquiridos durante o curso
@@ -18,6 +19,7 @@ Trabalhar com banco de dados, interfaces gráficas e relatórios
 
 Consolidar boas práticas de programação e versionamento
 
+---------------------------------------------------------------------------------------
 Funcionalidades
 
 Cadastro e gerenciamento de **clientes**
@@ -32,6 +34,7 @@ Geração de **relatórios em Excel**
 
 Interface gráfica amigável (Windows Forms)
 
+---------------------------------------------------------------------------------------
 Tecnologias Utilizadas
 
 **C#**
@@ -46,7 +49,7 @@ Tecnologias Utilizadas
 
 **Git & GitHub** (versionamento)
 
-
+---------------------------------------------------------------------------------------
 Estrutura do Projeto
 
 `cliente.cs` → gerenciamento de clientes
@@ -61,7 +64,7 @@ Estrutura do Projeto
 
 `Resources/` → imagens e recursos visuais
 
-
+---------------------------------------------------------------------------------------
 Resultados Esperados
 
 Com o desenvolvimento do Lapo Industries, espera-se demonstrar:
@@ -74,6 +77,7 @@ Uso da tecnologia como ferramenta de apoio à gestão empresarial
 
 Capacidade de desenvolver soluções aplicáveis ao mundo real
 
+---------------------------------------------------------------------------------------
 Desenvolvedor
 
 **Vitor dos Santos Fernandes**
@@ -83,6 +87,7 @@ Guarulhos – SP
 [LinkedIn](https://www.linkedin.com/in/devvitorfernandes/)
 [GitHub](https://github.com/vitorDev404)
 
+---------------------------------------------------------------------------------------
 Observações
 
 Este projeto tem fins **educacionais**, sendo parte de um **Trabalho de Conclusão de Curso**, não representando uma aplicação comercial em produção.
